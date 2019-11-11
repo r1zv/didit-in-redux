@@ -1,26 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+import React, { Component } from "react";
+import AllDidit from "./components/AllDidit";
+import DiditForm from "./components/DiditForm";
+import AboutModal from "./components/AboutModal";
+class App extends Component {
+  state = {
+    show: false
+  };
+  showModal = e => {
+    this.setState({ show: !this.state.show });
+  };
+  render() {
+    return (
+      <div className="App">
+        <h1>Didit</h1>
+        <button
+          onClick={e => {
+            this.showModal(e);
+          }}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+          About
+        </button>
+
+        <AboutModal onClose={this.showModal} show={this.state.show} />
+        <DiditForm />
+        <AllDidit />
+      </div>
+    );
+  }
 }
 
 export default App;
